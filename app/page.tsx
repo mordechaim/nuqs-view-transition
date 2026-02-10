@@ -1,13 +1,7 @@
 'use client';
 
 import { parseAsBoolean, useQueryState } from 'nuqs';
-import {
-  startTransition,
-  useOptimistic,
-  useState,
-  useTransition,
-  ViewTransition,
-} from 'react';
+import { useOptimistic, useState, useTransition, ViewTransition } from 'react';
 
 export default function HomePage() {
   return (
@@ -75,6 +69,7 @@ function QueryStateTransition() {
     parseAsBoolean.withDefault(false),
   );
   const [sync, setSync] = useState(true);
+  const [, startTransition] = useTransition();
 
   const handleToggle = async () => {
     if (sync) {
@@ -137,6 +132,7 @@ function OptimisticStateTransition() {
     parseAsBoolean.withDefault(false),
   );
   const [optimisticDetails, setOptimistic] = useOptimistic(details);
+  const [, startTransition] = useTransition();
   const [sync, setSync] = useState(true);
 
   const handleToggle = async () => {
